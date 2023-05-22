@@ -1,0 +1,478 @@
+/* || ROOT */
+
+:root {
+    /* | FOCUS */
+
+    /* LIGHT */
+    --LIGHT-OUTLINE-COLOR: hsl(0, 0%, 8%);
+    /* DARK */
+    --DARK-OUTLINE-COLOR: rgb(215, 0, 0);
+
+    /* | COLORS */
+
+    /* LIGHT */
+    --LIGHT-LOGO-COLOR: hsl(0, 0%, 8%);
+    --LIGHT-MAIN-COLOR: hsl(0, 0%, 18%);
+    --LIGHT-DELETE-TEXT-COLOR: red;
+    /* DARK */
+    --DARK-LOGO-COLOR: whitesmoke;
+    --DARK-MAIN-COLOR: lightgray;
+    --DARK-DELETE-TEXT-COLOR: rgb(215, 0, 0);
+
+    /* | BACKGROUND COLORS */
+
+    --OPTIONS-ELEMENT-HOVER-BG-COLOR: hsla(0, 0%, 65%, 0.1);
+    --INPUT-BG-COLOR: hsl(0, 0%, 84%);
+
+    /* LIGHT */
+    --LIGHT-DELETE-BG-COLOR: hsl(180, 100%, 34%);
+    --LIGHT-SCROLL-THUMB-BG-COLOR: hsl(180, 100%, 34%);
+    /* DARK */
+    --DARK-DELETE-BG-COLOR: hsl(258, 67%, 19%);
+    --DARK-SCROLL-THUMB-BG-COLOR: hsl(314, 100%, 26%);
+
+    /* | BACKGROUND IMAGES */
+
+    /* LIGHT */
+    --LIGHT-BODY-BG-IMAGE: radial-gradient(at top right, hsl(0, 0%, 84%), hsl(0, 0%, 73%));
+    --LIGHT-CARD-BG-IMAGE: radial-gradient(at top left, hsl(180, 100%, 34%), transparent);
+    --LIGHT-SCROLL-BG-IMAGE: linear-gradient(to bottom, hsl(0, 0%, 82%), hsl(0, 0%, 73%));
+    --LIGHT-SCROLL-THUMB-BG-IMAGE: linear-gradient(to bottom, hsl(180, 100%, 34%), hsla(180, 100%, 24%, 0.4));
+    /* DARK */
+    --DARK-BODY-BG-IMAGE: radial-gradient(at top right, hsl(258, 67%, 19%), hsl(249, 100%, 4%));
+    --DARK-CARD-BG-IMAGE: radial-gradient(at top left, hsl(314, 100%, 26%), transparent);
+    --DARK-SCROLL-BG-IMAGE: linear-gradient(to bottom, hsl(258, 67%, 19%), hsl(249, 100%, 4%));
+    --DARK-SCROLL-THUMB-BG-IMAGE: linear-gradient(to bottom, hsl(314, 100%, 26%), hsla(314, 100%, 26%, 0.4));
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: var(--LIGHT-SCROLL-BG-IMAGE);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--LIGHT-SCROLL-THUMB-BG-IMAGE);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--LIGHT-SCROLL-THUMB-BG-COLOR);
+}
+
+.dark-mode::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: var(--DARK-SCROLL-BG-IMAGE);
+}
+
+.dark-mode::-webkit-scrollbar-thumb {
+    background: var(--DARK-SCROLL-THUMB-BG-IMAGE);
+    border-radius: 10px;
+}
+
+.dark-mode::-webkit-scrollbar-thumb:hover {
+    background: var(--DARK-SCROLL-THUMB-BG-COLOR);
+}
+
+/* || GENERAL STYLES */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus-visible {
+    outline: 1px solid var(--LIGHT-OUTLINE-COLOR);
+}
+
+body.dark-mode *:focus-visible {
+    outline: 1px solid var(--DARK-OUTLINE-COLOR);
+}
+
+html {
+    font-family: 'Jost', sans-serif;
+    min-height: 100vh;
+}
+
+body {
+    background-image: var(--LIGHT-BODY-BG-IMAGE);
+}
+
+header {
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* || CLASSES */
+
+/* HEADER */
+
+.header-logo {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--LIGHT-LOGO-COLOR);
+}
+
+/* MENU */
+
+.menu-section {
+    position: relative;
+    width: 38px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menu-stripe {
+    position: absolute;
+    width: 30px;
+    height: 4px;
+    border-radius: 3px;
+    background-color: var(--LIGHT-LOGO-COLOR);
+    transition: transform 200ms;
+}
+
+.menu-stripe-top {
+    position: absolute;
+    width: 30px;
+    height: 4px;
+    border-radius: 3px;
+    background-color: var(--LIGHT-LOGO-COLOR);
+    transform: translateY(10px);
+    transition: transform 200ms;
+}
+
+.menu-stripe-bottom {
+    position: absolute;
+    width: 30px;
+    height: 4px;
+    border-radius: 3px;
+    background-color: var(--LIGHT-LOGO-COLOR);
+    transform: translateY(-10px);
+    transition: transform 200ms;
+}
+
+.menu-section[data-menu-clicked="true"] .menu-stripe{
+    transform: scaleX(0);
+}
+
+.menu-section[data-menu-clicked="true"] .menu-stripe-top{
+    transform: translateY(0px) rotate(-135deg);
+}
+
+.menu-section[data-menu-clicked="true"] .menu-stripe-bottom{
+    transform: translateY(0px) rotate(135deg);
+}
+
+.options-section {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    color: var(--LIGHT-MAIN-COLOR);
+    border-radius: 10px;
+    background-image: var(--LIGHT-BODY-BG-IMAGE);
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+    transform: translateY(-20px);
+    transition: opacity 200ms, transform 200ms;
+}
+
+.menu-section[data-menu-clicked="true"] .options-section {
+    opacity: 1;
+    pointer-events: auto;
+    user-select: auto;
+    transform: translateY(0);
+}
+
+.options-section-element {
+    font-size: 1.15rem;
+    letter-spacing: -0.25px;
+    min-width: 250px;
+    min-height: 45px;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.options-section-element:first-child {
+    border-radius: 10px 10px 0 0;
+}
+
+.options-section-element:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+.options-section-element:hover, .options-section-element:focus-visible{
+    background-color: var(--OPTIONS-ELEMENT-HOVER-BG-COLOR);
+}
+
+.options-bold {
+    font-weight: 600;
+    margin-right: 50px;
+}
+
+/* WEATHER SECTION */
+
+.weather-section {
+    margin: 25px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.add-card-to-scale {
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 200ms ease;
+}
+
+.add-card-to-scale:hover, .add-card-to-scale:focus-visible {
+    transform: scale(1.05);
+}
+
+.add-location-card {
+    position: relative;
+    padding: 90px 50px;
+    border-radius: 10px;
+    min-height: 400px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    animation: addCardClose 0.3s;
+    animation-play-state: paused;
+}
+
+.add-location-card[data-add-card-clicked="true"] {
+    animation: addCardOpen 0.3s;
+    animation-play-state: paused;
+}
+
+.add-location-card-bg {
+    position: absolute;
+    background-image: var(--LIGHT-CARD-BG-IMAGE);
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.85;
+    z-index: -1;
+}
+
+.add-location-button {
+    position: relative;
+    padding: 27px 0;
+}
+
+.add-location-plus-horizontal {
+    width: 60px;
+    height: 6px;
+    background-color: var(--LIGHT-MAIN-COLOR);
+    border-radius: 2px;
+}
+
+.add-location-plus-vertical {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 6px;
+    height: 60px;
+    background-color: var(--LIGHT-MAIN-COLOR);
+    border-radius: 2px;
+    transform: translateX(-50%);
+}
+
+.add-location-text {
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--LIGHT-LOGO-COLOR);
+}
+
+.add-location-form {
+    width: 100%;
+}
+
+.add-location-input {
+    font-family: 'Jost', sans-serif;
+    width: 100%;
+    height: 2rem;
+    margin: 5px 0;
+    padding-left: 5px;
+    border: transparent;
+    border-radius: 4px;
+    background-color: var(--INPUT-BG-COLOR);
+}
+
+.add-location-input:focus-visible {
+    outline: transparent;
+}
+
+.add-location-input:active {
+    border: transparent;
+}
+
+.add-location-submit {
+    color: var(--LIGHT-MAIN-COLOR);
+    width: 100%;
+    height: 2rem;
+    margin: 5px 0;
+    border: transparent;
+    border-radius: 4px;
+    background-image: var(--LIGHT-BODY-BG-IMAGE);
+    cursor: pointer;
+}
+
+.add-location-submit:hover, .add-location-submit:focus-visible {
+    transform: scale(1.03);
+}
+
+.add-location-submit:active {
+    transform: scale(1);
+}
+
+/* WEATHER CARD */
+
+.weather-card {
+    position: relative;
+    border-radius: 10px;
+    min-height: 400px;
+    padding: 45px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 200ms ease;
+}
+
+.weather-card:hover, .weather-card:focus-within {
+    border-radius: 10px 10px 0 0;
+    transform: scale(1.05) translateY(-16px);
+}
+
+.weather-card:active {
+    transform: scale(1.03) translateY(-16px);
+    transition: transform 150ms ease;
+}
+
+.weather-card-bg {
+    position: absolute;
+    background-image: var(--LIGHT-CARD-BG-IMAGE);
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.85;
+    z-index: -1;
+    transition: border-radius 200ms ease;
+}
+
+.weather-card:hover .weather-card-bg, .weather-card:focus-within .weather-card-bg {
+    border-radius: 10px 10px 0 0;
+}
+
+.weather-card-location {
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--LIGHT-MAIN-COLOR);
+}
+
+.weather-card-icon {
+    width: 5.5rem;
+    margin-top: 15px;
+    pointer-events: none;
+}
+
+.weather-card-condition {
+    font-size: 1.3rem;
+    text-align: center;
+    color: var(--LIGHT-MAIN-COLOR);
+    margin-top: 5px;
+}
+
+.weather-card-temp {
+    font-size: 1.6rem;
+    text-align: center;
+    color: var(--LIGHT-MAIN-COLOR);
+    margin-top: 5px;
+}
+
+.weather-card-delete {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    border-radius: 0 0 10px 10px;
+    z-index: -2;
+    opacity: 0;
+    transition: bottom 200ms ease, opacity 200ms ease;
+}
+
+.weather-card:hover .weather-card-delete, .weather-card:focus-within .weather-card-delete {
+    bottom: -30px;
+    opacity: 1;
+}
+
+.weather-card-delete-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--LIGHT-DELETE-BG-COLOR);
+    border-radius: 0 0 10px 10px;
+    opacity: 0.6;
+    z-index: -1;
+}
+
+.weather-card-delete-text {
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: var(--LIGHT-DELETE-TEXT-COLOR);
+    padding: 2px 0;
+}
+
+/* || MEDIA */
+
+@keyframes addCardOpen {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(90deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+@keyframes addCardClose {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(90deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .weather-section {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }    
+}
