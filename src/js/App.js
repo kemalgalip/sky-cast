@@ -3,7 +3,7 @@ import Header from "./Header.js"
 import WeatherSection from "./WeatherSection.js"
 
 export default function App() {
-    /* || BODY */
+    /* BODY */
     const [preferredUnit, setPreferredUnit] = React.useState(() => JSON.parse(localStorage.getItem("preferredUnit")) || "metric")
 
     const [darkMode, setDarkMode] = React.useState(() => JSON.parse(localStorage.getItem("darkMode")) || "on")

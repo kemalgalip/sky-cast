@@ -2,6 +2,7 @@ import React from "react"
 
 export default function Header(props) {
     /* || STYLE */
+    
     const headerLogoStyle = props.darkMode === "on" ? {color: "var(--DARK-LOGO-COLOR)"} : {}
 
     const menuStripeStyle = props.darkMode === "on" ? {backgroundColor: "var(--DARK-LOGO-COLOR)"} : {}
@@ -9,6 +10,7 @@ export default function Header(props) {
     const optionsSectionStyle = props.darkMode === "on" ? {color: "var(--DARK-MAIN-COLOR)", backgroundImage: "var(--DARK-BODY-BG-IMAGE)"} : {}
 
     /* || JS */
+    
     const menuSectionRef = React.useRef(null)
 
     const [menuClicked, setMenuClicked] = React.useState(false)

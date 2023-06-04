@@ -10,7 +10,7 @@ export default function WeatherSection(props) {
     const addLocationTextStyle = props.darkMode === "on" ? {color: "var(--DARK-LOGO-COLOR)"} : {}
 
     /* || JS */
-
+    
     /* LOCATION DATA */
     const [locationDatas, setLocationDatas] = React.useState([])
 
@@ -93,27 +93,28 @@ export default function WeatherSection(props) {
 
     return (
         <section className="weather-section">
-            {locationDatas.length === props.locationNames.length && <div className="add-card-to-scale">
-                    <div className="add-location-card" ref={addLocationCardRef} data-add-card-clicked={addCardClicked.toString()} onClick={() => {handleAnimatedElement(); changeAddCardClicked(); changeAddCardContent()}} onKeyDown={handleAddCardKeyDown} tabIndex={0}>
-                    <div className="add-location-card-bg" style={addLocationCardStyle}></div>
-                    {!addCardContent ?
-                    <>
-                        <div className="add-location-button">
-                            <div className="add-location-plus-horizontal" style={addLocationPlusStyle}></div>
-                            <div className="add-location-plus-vertical" style={addLocationPlusStyle}></div>
-                        </div>
-                        <h3 className="add-location-text" style={addLocationTextStyle}>Add Location</h3>
-                    </>
-                    :
-                    <>
-                        <h3 className="add-location-text" style={addLocationTextStyle}>Add Location</h3>
-                        <form className="add-location-form" onSubmit={addLocationFormSubmit} onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
-                            <input className="add-location-input" id="location" name="location" placeholder="Enter Location" autoComplete="off" value={currentLocation} onChange={handleLocationFormChange} />
-                            <button className="add-location-submit">Add</button>
-                        </form>
-                    </>}
+            {locationDatas.length === props.locationNames.length &&
+                <div className="add-card-to-scale">
+                    <div className="add-location-card" ref={addLocationCardRef} style={addLocationCardStyle} data-add-card-clicked={addCardClicked.toString()} onClick={() => {handleAnimatedElement(); changeAddCardClicked(); changeAddCardContent()}} onKeyDown={handleAddCardKeyDown} tabIndex={0}>
+                        {!addCardContent ?
+                        <>
+                            <div className="add-location-button">
+                                <div className="add-location-plus-horizontal" style={addLocationPlusStyle}></div>
+                                <div className="add-location-plus-vertical" style={addLocationPlusStyle}></div>
+                            </div>
+                            <h3 className="add-location-text" style={addLocationTextStyle}>Add Location</h3>
+                        </>
+                        :
+                        <>
+                            <h3 className="add-location-text" style={addLocationTextStyle}>Add Location</h3>
+                            <form className="add-location-form" onSubmit={addLocationFormSubmit} onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
+                                <input className="add-location-input" id="location" name="location" placeholder="Enter Location" autoComplete="off" value={currentLocation} onChange={handleLocationFormChange} />
+                                <button className="add-location-submit">Add</button>
+                            </form>
+                        </>}
+                    </div>
                 </div>
-            </div>}
+            }
             {locationDatasMapped}
         </section>
     )

@@ -25,10 +25,10 @@
     --INPUT-BG-COLOR: hsl(0, 0%, 84%);
 
     /* LIGHT */
-    --LIGHT-DELETE-BG-COLOR: hsl(180, 100%, 34%);
+    --LIGHT-DELETE-BG-COLOR: hsl(180, 100%, 33%);
     --LIGHT-SCROLL-THUMB-BG-COLOR: hsl(180, 100%, 34%);
     /* DARK */
-    --DARK-DELETE-BG-COLOR: hsl(258, 67%, 19%);
+    --DARK-DELETE-BG-COLOR: hsl(258, 67%, 17%);
     --DARK-SCROLL-THUMB-BG-COLOR: hsl(314, 100%, 26%);
 
     /* | BACKGROUND IMAGES */
@@ -46,7 +46,7 @@
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
     height: 8px;
     background: var(--LIGHT-SCROLL-BG-IMAGE);
 }
@@ -61,14 +61,11 @@
 }
 
 .dark-mode::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
     background: var(--DARK-SCROLL-BG-IMAGE);
 }
 
 .dark-mode::-webkit-scrollbar-thumb {
     background: var(--DARK-SCROLL-THUMB-BG-IMAGE);
-    border-radius: 10px;
 }
 
 .dark-mode::-webkit-scrollbar-thumb:hover {
@@ -97,7 +94,9 @@ html {
 }
 
 body {
+    min-height: 100vh;
     background-image: var(--LIGHT-BODY-BG-IMAGE);
+    background-attachment: fixed;
 }
 
 header {
@@ -121,58 +120,55 @@ header {
 
 .menu-section {
     position: relative;
-    width: 38px;
-    height: 32px;
+    width: 40px;
+    height: 34px;
+    padding: 4px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     cursor: pointer;
 }
 
 .menu-stripe {
-    position: absolute;
-    width: 30px;
+    width: 100%;
     height: 4px;
     border-radius: 3px;
     background-color: var(--LIGHT-LOGO-COLOR);
-    transition: transform 200ms;
+    transition: width 200ms;
 }
 
 .menu-stripe-top {
-    position: absolute;
-    width: 30px;
+    width: 100%;
     height: 4px;
     border-radius: 3px;
     background-color: var(--LIGHT-LOGO-COLOR);
-    transform: translateY(10px);
     transition: transform 200ms;
 }
 
 .menu-stripe-bottom {
-    position: absolute;
-    width: 30px;
+    width: 100%;
     height: 4px;
     border-radius: 3px;
     background-color: var(--LIGHT-LOGO-COLOR);
-    transform: translateY(-10px);
     transition: transform 200ms;
 }
 
 .menu-section[data-menu-clicked="true"] .menu-stripe{
-    transform: scaleX(0);
+    width: 0;
 }
 
 .menu-section[data-menu-clicked="true"] .menu-stripe-top{
-    transform: translateY(0px) rotate(-135deg);
+    transform: translateY(11px) rotate(-45deg);
 }
 
 .menu-section[data-menu-clicked="true"] .menu-stripe-bottom{
-    transform: translateY(0px) rotate(135deg);
+    transform: translateY(-11px) rotate(45deg);
 }
 
 .options-section {
     position: absolute;
-    top: 35px;
+    top: 45px;
     right: 0;
     color: var(--LIGHT-MAIN-COLOR);
     border-radius: 10px;
@@ -237,14 +233,16 @@ header {
     transition: transform 200ms ease;
 }
 
-.add-card-to-scale:hover, .add-card-to-scale:focus-visible {
+.add-card-to-scale:hover, .add-card-to-scale:focus-within {
     transform: scale(1.05);
 }
 
 .add-location-card {
     position: relative;
+    background-image: var(--LIGHT-CARD-BG-IMAGE);
     padding: 90px 50px;
     border-radius: 10px;
+    height: 100%;
     min-height: 400px;
     display: flex;
     flex-flow: column;
@@ -258,16 +256,6 @@ header {
 .add-location-card[data-add-card-clicked="true"] {
     animation: addCardOpen 0.3s;
     animation-play-state: paused;
-}
-
-.add-location-card-bg {
-    position: absolute;
-    background-image: var(--LIGHT-CARD-BG-IMAGE);
-    border-radius: 10px;
-    width: 100%;
-    height: 100%;
-    opacity: 0.85;
-    z-index: -1;
 }
 
 .add-location-button {
@@ -297,6 +285,7 @@ header {
     font-size: 1.4rem;
     font-weight: 500;
     text-align: center;
+    word-break: break-word;
     color: var(--LIGHT-LOGO-COLOR);
 }
 
@@ -346,6 +335,7 @@ header {
 
 .weather-card {
     position: relative;
+    background-image: var(--LIGHT-CARD-BG-IMAGE);
     border-radius: 10px;
     min-height: 400px;
     padding: 45px;
@@ -355,6 +345,10 @@ header {
     align-items: center;
     cursor: pointer;
     transition: transform 200ms ease;
+}
+
+.weather-card > * {
+    word-break: break-word;
 }
 
 .weather-card:hover, .weather-card:focus-within {
@@ -367,21 +361,6 @@ header {
     transition: transform 150ms ease;
 }
 
-.weather-card-bg {
-    position: absolute;
-    background-image: var(--LIGHT-CARD-BG-IMAGE);
-    border-radius: 10px;
-    width: 100%;
-    height: 100%;
-    opacity: 0.85;
-    z-index: -1;
-    transition: border-radius 200ms ease;
-}
-
-.weather-card:hover .weather-card-bg, .weather-card:focus-within .weather-card-bg {
-    border-radius: 10px 10px 0 0;
-}
-
 .weather-card-location {
     font-size: 1.5rem;
     text-align: center;
@@ -390,6 +369,8 @@ header {
 
 .weather-card-icon {
     width: 5.5rem;
+    max-width: 100%;
+    height: auto;
     margin-top: 15px;
     pointer-events: none;
 }
@@ -410,8 +391,9 @@ header {
 
 .weather-card-delete {
     position: absolute;
-    width: 100%;
     bottom: 0;
+    width: 100%;
+    background-color: var(--LIGHT-DELETE-BG-COLOR);
     border-radius: 0 0 10px 10px;
     z-index: -2;
     opacity: 0;
@@ -421,16 +403,6 @@ header {
 .weather-card:hover .weather-card-delete, .weather-card:focus-within .weather-card-delete {
     bottom: -30px;
     opacity: 1;
-}
-
-.weather-card-delete-bg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: var(--LIGHT-DELETE-BG-COLOR);
-    border-radius: 0 0 10px 10px;
-    opacity: 0.6;
-    z-index: -1;
 }
 
 .weather-card-delete-text {
@@ -471,8 +443,20 @@ header {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     .weather-section {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: 1fr 1fr 1fr;
+    }    
+}
+
+@media screen and (max-width: 725px) {
+    .weather-section {
+        grid-template-columns: 1fr 1fr;
+    }    
+}
+
+@media screen and (max-width: 475px) {
+    .weather-section {
+        grid-template-columns: 1fr;
     }    
 }
