@@ -1,6 +1,7 @@
 import React from "react"
 import Header from "./Header.js"
 import WeatherSection from "./WeatherSection.js"
+import Footer from "./Footer.js"
 
 export default function App() {
     /* BODY */
@@ -62,7 +63,10 @@ export default function App() {
     return (
         <div className="app">
             <Header preferredUnit={preferredUnit} changeUnits={changeUnits} darkMode={darkMode} changeDarkMode={changeDarkMode} />
-            <WeatherSection preferredUnit={preferredUnit} darkMode={darkMode} locationNames={locationNames} setLocationNamesFunction={setLocationNamesFunction} options={options} removeLocationName={removeLocationName} />
+            <main>
+                <WeatherSection preferredUnit={preferredUnit} darkMode={darkMode} locationNames={locationNames} setLocationNamesFunction={setLocationNamesFunction} options={options} removeLocationName={removeLocationName} />
+            </main>
+            <Footer darkMode={darkMode} />
         </div>
     )
 }

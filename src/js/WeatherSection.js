@@ -3,6 +3,7 @@ import WeatherCard from "./WeatherCard.js"
 
 export default function WeatherSection(props) {
     /* || STYLE */
+    
     const addLocationCardStyle = props.darkMode === "on" ? {backgroundImage: "var(--DARK-CARD-BG-IMAGE)"} : {}
 
     const addLocationPlusStyle = props.darkMode === "on" ? {backgroundColor: "var(--DARK-MAIN-COLOR)"} : {}
