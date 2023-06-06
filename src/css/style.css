@@ -26,7 +26,7 @@
 
     /* LIGHT */
     --LIGHT-DELETE-BG-COLOR: hsl(180, 100%, 33%);
-    --LIGHT-SCROLL-THUMB-BG-COLOR: hsl(180, 100%, 34%);
+    --LIGHT-SCROLL-THUMB-BG-COLOR: hsl(180, 100%, 33%);
     /* DARK */
     --DARK-DELETE-BG-COLOR: hsl(258, 67%, 17%);
     --DARK-SCROLL-THUMB-BG-COLOR: hsl(314, 100%, 26%);
@@ -34,10 +34,10 @@
     /* | BACKGROUND IMAGES */
 
     /* LIGHT */
-    --LIGHT-BODY-BG-IMAGE: radial-gradient(at top right, hsl(0, 0%, 84%), hsl(0, 0%, 73%));
-    --LIGHT-CARD-BG-IMAGE: radial-gradient(at top left, hsl(180, 100%, 34%), transparent);
-    --LIGHT-SCROLL-BG-IMAGE: linear-gradient(to bottom, hsl(0, 0%, 82%), hsl(0, 0%, 73%));
-    --LIGHT-SCROLL-THUMB-BG-IMAGE: linear-gradient(to bottom, hsl(180, 100%, 34%), hsla(180, 100%, 24%, 0.4));
+    --LIGHT-BODY-BG-IMAGE: radial-gradient(at top right, hsl(0, 0%, 95%), hsl(0, 0%, 90%));
+    --LIGHT-CARD-BG-IMAGE: radial-gradient(at top left, hsl(180, 100%, 33%), transparent);
+    --LIGHT-SCROLL-BG-IMAGE: linear-gradient(to bottom, hsl(0, 0%, 95%), hsl(0, 0%, 95%));
+    --LIGHT-SCROLL-THUMB-BG-IMAGE: linear-gradient(to bottom, hsl(180, 100%, 33%), hsla(180, 100%, 24%, 0.4));
     /* DARK */
     --DARK-BODY-BG-IMAGE: radial-gradient(at top right, hsl(258, 67%, 19%), hsl(249, 100%, 4%));
     --DARK-CARD-BG-IMAGE: radial-gradient(at top left, hsl(314, 100%, 26%), transparent);
